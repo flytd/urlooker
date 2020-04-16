@@ -8,6 +8,7 @@ idc:
 http:
     listen: "0.0.0.0:1984"
     secret: "secret"
+    register: false # 当为true时开放注册, 当为false, 关闭注册
 rpc:
     listen: "0.0.0.0:1985"
 mysql:
