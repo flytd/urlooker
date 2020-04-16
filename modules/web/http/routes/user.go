@@ -1,11 +1,12 @@
 package routes
 
 import (
+	"encoding/json"
+	"io/ioutil"
 	"net/http"
 	"strings"
 
 	"github.com/toolkits/str"
-	//"github.com/toolkits/web"
 
 	"github.com/710leo/urlooker/modules/web/g"
 	"github.com/710leo/urlooker/modules/web/http/cookie"
@@ -49,6 +50,20 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", 302)
 }
 
+func ApiLogout(w http.ResponseWriter, r *http.Request) {
+	_, name, _ :=cookie.ReadUser(r)
+	if name == "" {
+		render.ErrorCode(w, errors.NewError( "没用用户登录"))
+		return
+	}
+	if err := cookie.RemoveUser(w); err != nil {
+		errors.MaybePanic(err)
+		render.ErrorCode(w, err)
+		return
+	}
+	render.Data(w, "", "登出成功")
+}
+
 func LoginPage(w http.ResponseWriter, r *http.Request) {
 	render.Put(r, "Title", "login")
 	render.Put(r, "callback", param.String(r, "callback", "/"))
@@ -64,7 +79,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var u *model.User
-	var userid int64
+	var userId int64
 	if g.Config.Ldap.Enabled {
 		sucess, err := utils.LdapBind(g.Config.Ldap.Addr,
 			g.Config.Ldap.BaseDN,
@@ -119,14 +134,51 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			}
 			errors.MaybePanic(u.Save())
 		}
-		userid = u.Id
+		userId = u.Id
 	} else {
 		var err error
-		userid, err = model.UserLogin(username, utils.EncryptPassword(g.Config.Salt, password))
+		userId, err = model.UserLogin(username, utils.EncryptPassword(g.Config.Salt, password))
 		errors.MaybePanic(err)
 	}
 
-	render.Data(w, cookie.WriteUser(w, userid, username))
+	render.Data(w, cookie.WriteUser(w, userId, username))
+}
+
+func ApiLogin(w http.ResponseWriter, r *http.Request) {
+	_, name, _ :=cookie.ReadUser(r)
+	result, _ := ioutil.ReadAll(r.Body)
+	defer  r.Body.Close()
+	var user map[string]string
+	err := json.Unmarshal(result, &user)
+	if err != nil {
+		errors.MaybePanic(err)
+		render.ErrorCode(w, err)
+		return
+	}
+	username := user["username"]
+	password := user["password"]
+
+	if name != "" && username == name {
+		render.ErrorCode(w, errors.NewError(username + "已经登录"))
+		return
+	}
+	if str.HasDangerousCharacters(username) {
+		errors.Panic("用户名不合法，请不要使用非法字符")
+		render.ErrorCode(w, errors.NewError("用户名不合法，请不要使用非法字符"))
+		return
+	}
+
+	userId, err := model.UserLogin(username, utils.EncryptPassword(g.Config.Salt, password))
+	if err != nil {
+		render.ErrorCode(w, err)
+		return
+	}
+	// 写入cookie
+	if err != cookie.WriteUser(w, userId, username) {
+		render.ErrorCode(w, err)
+		return
+	}
+	render.Data(w, "", "登录成功")
 }
 
 func MeJson(w http.ResponseWriter, r *http.Request) {

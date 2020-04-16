@@ -31,6 +31,13 @@ func String(r *http.Request, key string, defVal string) string {
 
 	return strings.TrimSpace(val)
 }
+func ApiString(val string, defVal string) string {
+	if val == "" {
+		return defVal
+	}
+	return val
+}
+
 
 func MustString(r *http.Request, key string, displayName ...string) string {
 	val := String(r, key, "")
@@ -43,6 +50,7 @@ func MustString(r *http.Request, key string, displayName ...string) string {
 	}
 	return val
 }
+
 
 func Int64(r *http.Request, key string, defVal int64) int64 {
 	raw := String(r, key, "")
@@ -87,6 +95,13 @@ func Int(r *http.Request, key string, defVal int) int {
 		return defVal
 	}
 
+	return val
+}
+
+func ApiInt(val, defVal int) int {
+	if val == 0 {
+		return defVal
+	}
 	return val
 }
 

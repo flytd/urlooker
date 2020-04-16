@@ -24,6 +24,7 @@ type MysqlConfig struct {
 type HttpConfig struct {
 	Listen string `yaml:"listen"`
 	Secret string `yaml:"secret"`
+	Register bool `yaml:"register"`
 }
 
 type RpcConfig struct {

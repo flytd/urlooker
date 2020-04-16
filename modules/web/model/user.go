@@ -126,7 +126,7 @@ func UserLogin(name, password string) (int64, error) {
 		return 0, err
 	}
 	if user == nil {
-		return 0, fmt.Errorf("密码不正确")
+		return 0, fmt.Errorf("用户名或密码不正确")
 	}
 
 	return user.Id, nil

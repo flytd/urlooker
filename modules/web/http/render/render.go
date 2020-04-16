@@ -79,6 +79,15 @@ func Error(w http.ResponseWriter, err error) {
 	Render.JSON(w, http.StatusOK, map[string]string{"msg": msg})
 }
 
+func ErrorCode(w http.ResponseWriter, err error) {
+	msg := ""
+	if err != nil {
+		msg = err.Error()
+	}
+
+	Render.JSON(w, http.StatusOK, map[string]string{"msg": msg, "code": "xxx"})
+}
+
 func Message(w http.ResponseWriter, format string, args ...interface{}) {
 	Render.JSON(w, http.StatusOK, map[string]string{"msg": fmt.Sprintf(format, args...)})
 }
@@ -89,5 +98,5 @@ func Data(w http.ResponseWriter, v interface{}, msg ...string) {
 		m = msg[0]
 	}
 
-	Render.JSON(w, http.StatusOK, map[string]interface{}{"msg": m, "data": v})
+	Render.JSON(w, http.StatusOK, map[string]interface{}{"msg": m, "code": 0, "data": v})
 }

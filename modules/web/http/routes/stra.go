@@ -1,7 +1,9 @@
 package routes
 
 import (
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"strings"
@@ -14,6 +16,30 @@ import (
 	"github.com/710leo/urlooker/modules/web/utils"
 )
 
+type Strategy struct {
+	Idc        string   `json:"idc"`
+	Method     string   `json:"method"`
+	Urls       []string `json:"urls"`
+	Enable     int      `json:"enable"`
+	Ip         string   `json:"ip"`
+	Keywords   string   `json:"keywords"`
+	Timeout    int      `json:"timeout"`
+	ExpectCode string   `json:"expect_code"`
+	Note       string   `json:"note"`
+	Data       string   `json:"data"`
+	Endpoint   string   `json:"endpoint"`
+	Header     string   `json:"header"`
+	PostData   string   `json:"post_data"`
+	Times      int      `json:"times"`
+	MaxStep    int      `json:"max_step"`
+	Teams      string   `json:"teams"`
+	Tags       []string `json:"tag"`
+}
+
+type StrUrl struct {
+	Url 	[]string	`json:"url"`
+}
+
 func AddStrategyGet(w http.ResponseWriter, r *http.Request) {
 	render.Put(r, "Regions", g.Config.IDC)
 	render.HTML(r, w, "strategy/create")
@@ -24,7 +50,6 @@ func AddStrategyPost(w http.ResponseWriter, r *http.Request) {
 	var msg string
 	var err error
 	var tagStr string
-
 	urls := strings.Split(param.String(r, "url", ""), "\n")
 	for _, url := range urls {
 		err := utils.CheckUrl(url)
@@ -36,8 +61,8 @@ func AddStrategyPost(w http.ResponseWriter, r *http.Request) {
 	tags := strings.Split(param.String(r, "tags", ""), "\n")
 	if len(tags) > 0 && tags[0] != "" {
 		for _, tag := range tags {
-			strs := strings.Split(tag, "=")
-			if len(strs) != 2 {
+			strS := strings.Split(tag, "=")
+			if len(strS) != 2 {
 				errors.Panic("tag must be like aaa=bbb")
 			}
 		}
@@ -77,6 +102,77 @@ func AddStrategyPost(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		errMsg := fmt.Sprintf("%s,err:%v", msg, err)
 		errors.Panic(errMsg)
+	}
+	render.Data(w, msg)
+}
+
+func AddStrategyApiPost(w http.ResponseWriter, r *http.Request) {
+	user := IsLogin(r)
+	if user == nil || user.Name == "" {
+		render.ErrorCode(w, errors.NewError("没有用户登录"))
+		return
+	}
+	username := user.Name
+	var msg string
+	var err error
+	var tagStr string
+
+	result, _ := ioutil.ReadAll(r.Body)
+	defer r.Body.Close()
+	var data Strategy
+	json.Unmarshal(result, &data)
+	urls := data.Urls
+	for _, url := range urls {
+		err := utils.CheckUrl(url)
+		if err != nil {
+			render.ErrorCode(w, err)
+			return
+		}
+	}
+	tags := data.Tags
+	if len(tags) > 0 && tags[0] != "" {
+		for _, tag := range tags {
+			strS := strings.Split(tag, "=")
+			if len(strS) != 2 {
+				render.ErrorCode(w, errors.NewError("tag 必须类似于 aaa=bbb"))
+				return
+			}
+		}
+		tagStr = strings.Join(tags, ",")
+	}
+
+	for _, url := range urls {
+		var s = model.Strategy{}
+		s.Method = param.ApiString(data.Method, "get")
+		s.Creator = username
+		s.Enable = data.Enable
+		s.Url = url
+		s.Idc = param.ApiString(data.Idc, "default")
+		s.ExpectCode = param.ApiString(data.ExpectCode, "200")
+		s.Timeout = param.ApiInt(data.Timeout, 3000)
+		s.Header = param.ApiString(data.Header, "")
+		s.PostData = param.ApiString(data.PostData, "")
+		s.MaxStep = param.ApiInt(data.MaxStep, 3)
+		s.Teams = data.Teams
+		s.Times = param.ApiInt(data.Times, 3)
+		s.Note = param.ApiString(data.Note, "")
+		s.Keywords = param.ApiString(data.Keywords, "")
+		s.Data = param.ApiString(data.Data, "")
+		s.Endpoint = param.ApiString(data.Endpoint, "")
+		s.Tag = tagStr
+		s.IP = param.ApiString(data.Ip, "")
+
+		_, err = s.Add()
+		if err != nil {
+			msg += fmt.Sprintf("添加:%s 失败, 错误:%s", url, err.Error())
+		} else {
+			msg += fmt.Sprintf("添加%s成功 ", url)
+		}
+	}
+
+	if err != nil {
+		render.ErrorCode(w, errors.NewError(msg))
+		return
 	}
 	render.Data(w, msg)
 }
@@ -160,6 +256,37 @@ func DeleteStrategy(w http.ResponseWriter, r *http.Request) {
 	err := strategy.Delete()
 	errors.MaybePanic(err)
 	render.Data(w, "ok")
+}
+
+func DeleteStrategyApi(w http.ResponseWriter, r *http.Request) {
+	user := IsLogin(r)
+	if user == nil || user.Name == "" {
+		render.ErrorCode(w, errors.NewError("没有用户登录"))
+		return
+	}
+	var msg string
+	var err error
+	var data StrUrl
+	result, _ := ioutil.ReadAll(r.Body)
+	json.Unmarshal(result, &data)
+	for _, url := range data.Url {
+		strategy, err := model.GetStrategyByUrl(url)
+		username := user.Name
+		if strategy.Creator != username && !IsAdmin(username) {
+			render.ErrorCode(w, errors.NewError("没有权限"))
+			return
+		}
+		err = strategy.Delete()
+		if err != nil {
+			msg += fmt.Sprintf("删除:%s 失败, 错误:%s", url, err.Error())
+		} else {
+			msg += fmt.Sprintf("删除%s成功 ", url)
+		}
+	}
+	if err != nil {
+		render.ErrorCode(w, errors.NewError(msg))
+	}
+	render.Data(w, msg)
 }
 
 func GetTeamsOfStrategy(w http.ResponseWriter, r *http.Request) {

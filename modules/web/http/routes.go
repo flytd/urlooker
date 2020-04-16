@@ -3,6 +3,7 @@ package http
 import (
 	"net/http"
 
+	"github.com/710leo/urlooker/modules/web/g"
 	"github.com/710leo/urlooker/modules/web/http/routes"
 
 	"github.com/gorilla/mux"
@@ -29,6 +30,14 @@ func configChartRoutes(r *mux.Router) {
 
 func configApiRoutes(r *mux.Router) {
 	r.HandleFunc("/api/item/{idc}", routes.GetDetectItem).Methods("GET")
+
+	s := r.PathPrefix("/api/v1").Subrouter()
+	s.HandleFunc("/auth/logout", routes.ApiLogout).Methods("GET")
+	s.HandleFunc("/auth/login", routes.ApiLogin).Methods("POST")
+	s.HandleFunc("/index", routes.HomeApiIndex).Methods("GET")
+	s.HandleFunc("/teams", routes.TeamsApiJson).Methods("GET")
+	s.HandleFunc("/strategy/add", routes.AddStrategyApiPost).Methods("POST")
+	s.HandleFunc("/strategy/delete", routes.DeleteStrategyApi).Methods("POST")
 }
 
 func configStraRoutes(r *mux.Router) {
@@ -43,8 +52,10 @@ func configStraRoutes(r *mux.Router) {
 }
 
 func configAuthRoutes(r *mux.Router) {
-	r.HandleFunc("/auth/register", routes.RegisterPage).Methods("GET")
-	r.HandleFunc("/auth/register", routes.Register).Methods("POST")
+	if g.Config.Http.Register {
+		r.HandleFunc("/auth/register", routes.RegisterPage).Methods("GET")
+		r.HandleFunc("/auth/register", routes.Register).Methods("POST")
+	}
 	r.HandleFunc("/auth/logout", routes.Logout).Methods("GET")
 	r.HandleFunc("/auth/login", routes.Login).Methods("POST")
 	r.HandleFunc("/auth/login", routes.LoginPage).Methods("GET")

@@ -55,13 +55,23 @@ func IdcRequired(r *http.Request) string {
 }
 
 func LoginRequired(w http.ResponseWriter, r *http.Request) (int64, string) {
-	userid, username, found := cookie.ReadUser(r)
+	userId, username, found := cookie.ReadUser(r)
 	if !found {
 		panic(errors.NotLoginError())
 	}
 
-	return userid, username
+	return userId, username
 }
+
+func IsLogin (r *http.Request) *model.User {
+	userId, _, found := cookie.ReadUser(r)
+	user, err := model.GetUserById(userId)
+	if err != nil || !found || user == nil {
+		return nil
+	}
+	return user
+}
+
 
 func AdminRequired(id int64, name string) {
 	user, err := model.GetUserById(id)

@@ -13,8 +13,8 @@ func Start() {
 	render.Init()
 
 	r := mux.NewRouter().StrictSlash(false)
-	ConfigRouter(r)
 
+	ConfigRouter(r)
 	n := negroni.New()
 	n.Use(middleware.NewLogger())
 	n.Use(middleware.NewRecovery())

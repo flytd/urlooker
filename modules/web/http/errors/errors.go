@@ -1,6 +1,7 @@
 package errors
 
 import (
+	"errors"
 	"net/http"
 	"runtime"
 	"strings"
@@ -44,6 +45,10 @@ func _build(code int, defval string, custom ...string) Error {
 		Code: code,
 		Msg:  msg,
 	}
+}
+
+func NewError(err string) error {
+	return  errors.New(err)
 }
 
 func MaybePanic(err error) {

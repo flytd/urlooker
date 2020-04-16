@@ -132,6 +132,12 @@ func QueryTeams(query string, limit int) ([]*Team, error) {
 	return teams, err
 }
 
+func QueryAllTeams() ([]*Team, error) {
+	teams := make([]*Team, 0)
+	err := Orm.Where("name LIKE ?", "%").Find(&teams)
+	return teams, err
+}
+
 func GetTeamsByIds(ids string) ([]*Team, error) {
 	teams := make([]*Team, 0)
 

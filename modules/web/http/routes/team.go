@@ -61,6 +61,20 @@ func TeamsJson(w http.ResponseWriter, r *http.Request) {
 	render.Data(w, map[string]interface{}{"teams": teams})
 }
 
+func TeamsApiJson(w http.ResponseWriter, r *http.Request) {
+	user := IsLogin(r)
+	if user == nil || user.Name == "" {
+		render.ErrorCode(w, errors.NewError("没有用户登录"))
+		return
+	}
+	teams, err := model.QueryAllTeams()
+	if err != nil {
+		render.ErrorCode(w, errors.NewError("查询错误"))
+		return
+	}
+	render.Data(w, map[string]interface{}{"teams": teams}, "查询成功")
+}
+
 func CreateTeamGet(w http.ResponseWriter, r *http.Request) {
 	me := MeRequired(LoginRequired(w, r))
 

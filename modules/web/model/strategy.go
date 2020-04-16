@@ -59,6 +59,12 @@ func GetStrategyById(sid int64) (*Strategy, error) {
 	return strategy, err
 }
 
+func GetStrategyByUrl(url string) (* Strategy, error) {
+	strategy := new(Strategy)
+	_, err := Orm.Where("url=?", url).Get(strategy)
+	return strategy, err
+}
+
 func (this *Strategy) Add() (int64, error) {
 	_, err := Orm.Insert(this)
 	return this.Id, err
