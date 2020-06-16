@@ -19,7 +19,7 @@ func Judge(L *SafeLinkedList, item *dataobj.ItemStatus, now int64) {
 		EventId:    fmt.Sprintf("e_%d_%s", item.Id, item.PK()),
 		Url:        strategy.Url,
 		StrategyId: item.Sid,
-		Ip:         item.Ip,
+		Ip:         strategy.IP,
 		EventTime:  item.PushTime,
 		RespCode:   item.RespCode,
 		RespTime:   item.RespTime,
