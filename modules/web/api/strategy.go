@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/710leo/urlooker/dataobj"
-	"github.com/710leo/urlooker/modules/web/model"
+	"github.com/flytd/urlooker/dataobj"
+	"github.com/flytd/urlooker/modules/web/model"
 )
 
 func (this *Web) GetStrategies(req interface{}, resp *dataobj.StrategyResponse) error {

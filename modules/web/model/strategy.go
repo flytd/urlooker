@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/710leo/urlooker/dataobj"
-	. "github.com/710leo/urlooker/modules/web/store"
+	"github.com/flytd/urlooker/dataobj"
+	. "github.com/flytd/urlooker/modules/web/store"
 )
 
 type Strategy dataobj.Strategy

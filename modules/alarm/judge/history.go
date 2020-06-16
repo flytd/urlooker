@@ -4,7 +4,7 @@ import (
 	"container/list"
 	"sync"
 
-	"github.com/710leo/urlooker/dataobj"
+	"github.com/flytd/urlooker/dataobj"
 )
 
 type HistoryData struct {

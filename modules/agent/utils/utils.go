@@ -9,8 +9,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/710leo/urlooker/dataobj"
-	"github.com/710leo/urlooker/modules/agent/g"
+	"github.com/flytd/urlooker/dataobj"
+	"github.com/flytd/urlooker/modules/agent/g"
 
 	"github.com/astaxie/beego/httplib"
 )

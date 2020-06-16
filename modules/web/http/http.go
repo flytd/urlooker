@@ -1,9 +1,9 @@
 package http
 
 import (
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/http/middleware"
-	"github.com/710leo/urlooker/modules/web/http/render"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/http/middleware"
+	"github.com/flytd/urlooker/modules/web/http/render"
 
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"

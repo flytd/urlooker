@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/710leo/urlooker/dataobj"
-	"github.com/710leo/urlooker/modules/alarm/backend"
-	"github.com/710leo/urlooker/modules/alarm/cache"
-	"github.com/710leo/urlooker/modules/alarm/sender"
+	"github.com/flytd/urlooker/dataobj"
+	"github.com/flytd/urlooker/modules/alarm/backend"
+	"github.com/flytd/urlooker/modules/alarm/cache"
+	"github.com/flytd/urlooker/modules/alarm/sender"
 )
 
 func Judge(L *SafeLinkedList, item *dataobj.ItemStatus, now int64) {

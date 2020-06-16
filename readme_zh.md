@@ -1,6 +1,6 @@
-## [urlooker](https://github.com/710leo/urlooker)
+## [urlooker](https://github.com/flytd/urlooker)
 监控web服务可用性及访问质量，采用go语言编写，易于安装和二次开发    
-[English](https://github.com/710leo/urlooker)|[中文](https://github.com/710leo/urlooker/blob/master/readme_zh.md)
+[English](https://github.com/flytd/urlooker)|[中文](https://github.com/flytd/urlooker/blob/master/readme_zh.md)
 
 ## Feature
 - 返回状态码检测
@@ -21,8 +21,8 @@
 <img src="img/urlooker_stra.png" style="zoom:45%;" />
 
 ## 常见问题
-- [wiki手册](https://github.com/710leo/urlooker/wiki)
-- [常见问题](https://github.com/710leo/urlooker/wiki/FAQ)
+- [wiki手册](https://github.com/flytd/urlooker/wiki)
+- [常见问题](https://github.com/flytd/urlooker/wiki/FAQ)
 - 初始用户名密码：admin/password
 
 ## Install
@@ -32,16 +32,16 @@ yum install -y mysql-server
 ```
 ##### 导入数据库
 ```bash
-wget https://raw.githubusercontent.com/710leo/urlooker/master/sql/schema.sql
+wget https://raw.githubusercontent.com/flytd/urlooker/master/sql/schema.sql
 mysql -h 127.0.0.1 -u root -p < schema.sql
 ```
 
 ##### 安装组件
 ```bash
 # set $GOPATH and $GOROOT
-curl https://raw.githubusercontent.com/710leo/urlooker/master/install.sh|bash
+curl https://raw.githubusercontent.com/flytd/urlooker/master/install.sh|bash
 
-cd $GOPATH/src/github.com/710leo/urlooker && ./control.sh start all
+cd $GOPATH/src/github.com/flytd/urlooker && ./control.sh start all
 ```
 
 打开浏览器访问 http://127.0.0.1:1984 即可

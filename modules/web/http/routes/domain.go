@@ -3,12 +3,12 @@ package routes
 import (
 	"net/http"
 
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/http/errors"
-	"github.com/710leo/urlooker/modules/web/http/param"
-	"github.com/710leo/urlooker/modules/web/http/render"
-	"github.com/710leo/urlooker/modules/web/model"
-	"github.com/710leo/urlooker/modules/web/utils"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/http/errors"
+	"github.com/flytd/urlooker/modules/web/http/param"
+	"github.com/flytd/urlooker/modules/web/http/render"
+	"github.com/flytd/urlooker/modules/web/model"
+	"github.com/flytd/urlooker/modules/web/utils"
 )
 
 type Url struct {

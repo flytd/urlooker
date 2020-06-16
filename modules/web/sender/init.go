@@ -1,8 +1,8 @@
 package sender
 
 import (
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/utils"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/utils"
 
 	"github.com/toolkits/container/list"
 )

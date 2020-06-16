@@ -3,8 +3,8 @@ package cron
 import (
 	"time"
 
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/model"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/model"
 
 	log "github.com/sirupsen/logrus"
 )

@@ -3,8 +3,8 @@ package model
 import (
 	"time"
 
-	"github.com/710leo/urlooker/modules/web/g"
-	. "github.com/710leo/urlooker/modules/web/store"
+	"github.com/flytd/urlooker/modules/web/g"
+	. "github.com/flytd/urlooker/modules/web/store"
 )
 
 type RelSidIp struct {

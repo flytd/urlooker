@@ -7,10 +7,10 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/710leo/urlooker/modules/agent/backend"
-	"github.com/710leo/urlooker/modules/agent/cron"
-	"github.com/710leo/urlooker/modules/agent/g"
-	"github.com/710leo/urlooker/modules/agent/utils"
+	"github.com/flytd/urlooker/modules/agent/backend"
+	"github.com/flytd/urlooker/modules/agent/cron"
+	"github.com/flytd/urlooker/modules/agent/g"
+	"github.com/flytd/urlooker/modules/agent/utils"
 
 	"github.com/toolkits/file"
 )

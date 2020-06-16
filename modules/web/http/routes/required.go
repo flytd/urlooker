@@ -10,10 +10,10 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/toolkits/str"
 
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/http/cookie"
-	"github.com/710leo/urlooker/modules/web/http/errors"
-	"github.com/710leo/urlooker/modules/web/model"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/http/cookie"
+	"github.com/flytd/urlooker/modules/web/http/errors"
+	"github.com/flytd/urlooker/modules/web/model"
 )
 
 func StraRequired(r *http.Request) *model.Strategy {

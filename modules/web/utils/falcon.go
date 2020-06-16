@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/710leo/urlooker/dataobj"
+	"github.com/flytd/urlooker/dataobj"
 
 	"github.com/astaxie/beego/httplib"
 )

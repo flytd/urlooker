@@ -7,12 +7,12 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/710leo/urlooker/modules/alarm/backend"
-	"github.com/710leo/urlooker/modules/alarm/cron"
-	"github.com/710leo/urlooker/modules/alarm/g"
-	"github.com/710leo/urlooker/modules/alarm/judge"
-	"github.com/710leo/urlooker/modules/alarm/receiver"
-	"github.com/710leo/urlooker/modules/alarm/sender"
+	"github.com/flytd/urlooker/modules/alarm/backend"
+	"github.com/flytd/urlooker/modules/alarm/cron"
+	"github.com/flytd/urlooker/modules/alarm/g"
+	"github.com/flytd/urlooker/modules/alarm/judge"
+	"github.com/flytd/urlooker/modules/alarm/receiver"
+	"github.com/flytd/urlooker/modules/alarm/sender"
 
 	"github.com/toolkits/file"
 )

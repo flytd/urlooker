@@ -13,11 +13,11 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/710leo/urlooker/dataobj"
-	"github.com/710leo/urlooker/modules/alarm/backend"
-	"github.com/710leo/urlooker/modules/alarm/cache"
-	"github.com/710leo/urlooker/modules/alarm/g"
-	"github.com/710leo/urlooker/modules/web/api"
+	"github.com/flytd/urlooker/dataobj"
+	"github.com/flytd/urlooker/modules/alarm/backend"
+	"github.com/flytd/urlooker/modules/alarm/cache"
+	"github.com/flytd/urlooker/modules/alarm/g"
+	"github.com/flytd/urlooker/modules/web/api"
 
 	"github.com/toolkits/file"
 	"github.com/toolkits/smtp"

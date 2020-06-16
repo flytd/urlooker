@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 
-	"github.com/710leo/urlooker/dataobj"
+	"github.com/flytd/urlooker/dataobj"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/push"
 )

@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/710leo/urlooker/dataobj"
-	"github.com/710leo/urlooker/modules/web/model"
+	"github.com/flytd/urlooker/dataobj"
+	"github.com/flytd/urlooker/modules/web/model"
 )
 
 type UsersResponse struct {

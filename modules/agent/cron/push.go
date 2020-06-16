@@ -4,10 +4,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/710leo/urlooker/dataobj"
+	"github.com/flytd/urlooker/dataobj"
 
-	"github.com/710leo/urlooker/modules/agent/backend"
-	"github.com/710leo/urlooker/modules/agent/g"
+	"github.com/flytd/urlooker/modules/agent/backend"
+	"github.com/flytd/urlooker/modules/agent/g"
 )
 
 func Push() {

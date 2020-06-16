@@ -3,8 +3,8 @@ package routes
 import (
 	"net/http"
 
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/http/render"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/http/render"
 )
 
 func GetDetectItem(w http.ResponseWriter, r *http.Request) {

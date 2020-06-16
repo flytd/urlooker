@@ -6,7 +6,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 
-	"github.com/710leo/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/g"
 )
 
 var Orm *xorm.Engine

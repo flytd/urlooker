@@ -6,8 +6,8 @@ import (
 
 	"github.com/toolkits/container/list"
 
-	"github.com/710leo/urlooker/modules/web/backend"
-	"github.com/710leo/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/backend"
+	"github.com/flytd/urlooker/modules/web/g"
 )
 
 func SendToAlarm(Q *list.SafeListLimited, node string) {

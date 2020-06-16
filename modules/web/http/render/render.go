@@ -5,9 +5,9 @@ import (
 	"html/template"
 	"net/http"
 
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/http/cookie"
-	"github.com/710leo/urlooker/modules/web/http/helper"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/http/cookie"
+	"github.com/flytd/urlooker/modules/web/http/helper"
 
 	"github.com/gorilla/context"
 	"github.com/unrolled/render"

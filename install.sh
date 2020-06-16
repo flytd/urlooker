@@ -5,12 +5,12 @@ fi
 
 export GO111MODULE="off"
 echo "set GO111MODULE=off"
-mkdir -p $GOPATH/src/github.com/710leo
+mkdir -p $GOPATH/src/github.com/flytd
    
-if [ ! -d "$GOPATH/src/github.com/710leo/urlooker" ]; then
-	cd $GOPATH/src/github.com/710leo && git clone https://github.com/710leo/urlooker.git
+if [ ! -d "$GOPATH/src/github.com/flytd/urlooker" ]; then
+	cd $GOPATH/src/github.com/flytd && git clone https://github.com/flytd/urlooker.git
 else
-	cd $GOPATH/src/github.com/710leo/urlooker && git pull
+	cd $GOPATH/src/github.com/flytd/urlooker && git pull
 fi
-cd $GOPATH/src/github.com/710leo/urlooker && ./control.sh build
-echo "install ok! run cd $GOPATH/src/github.com/710leo/urlooker && ./control.sh start all"
+cd $GOPATH/src/github.com/flytd/urlooker && ./control.sh build
+echo "install ok! run cd $GOPATH/src/github.com/flytd/urlooker && ./control.sh start all"

@@ -9,10 +9,10 @@ import (
 	"github.com/toolkits/str"
 	"github.com/toolkits/web"
 
-	"github.com/710leo/urlooker/modules/web/http/errors"
-	"github.com/710leo/urlooker/modules/web/http/param"
-	"github.com/710leo/urlooker/modules/web/http/render"
-	"github.com/710leo/urlooker/modules/web/model"
+	"github.com/flytd/urlooker/modules/web/http/errors"
+	"github.com/flytd/urlooker/modules/web/http/param"
+	"github.com/flytd/urlooker/modules/web/http/render"
+	"github.com/flytd/urlooker/modules/web/model"
 )
 
 func TeamsPage(w http.ResponseWriter, r *http.Request) {

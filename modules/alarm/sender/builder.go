@@ -5,9 +5,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/710leo/urlooker/dataobj"
-	"github.com/710leo/urlooker/modules/alarm/cache"
-	"github.com/710leo/urlooker/modules/alarm/g"
+	"github.com/flytd/urlooker/dataobj"
+	"github.com/flytd/urlooker/modules/alarm/cache"
+	"github.com/flytd/urlooker/modules/alarm/g"
 )
 
 func BuildMail(event *dataobj.Event) string {

@@ -3,7 +3,7 @@ package cache
 import (
 	"sync"
 
-	"github.com/710leo/urlooker/dataobj"
+	"github.com/flytd/urlooker/dataobj"
 )
 
 type SafeStrategyMap struct {

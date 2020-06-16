@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/710leo/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/g"
 )
 
 type SingleConnRpcClient struct {

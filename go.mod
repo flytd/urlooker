@@ -1,4 +1,4 @@
-module github.com/710leo/urlooker
+module github.com/flytd/urlooker
 
 go 1.12
 

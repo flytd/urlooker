@@ -3,8 +3,8 @@ package receiver
 import (
 	"time"
 
-	"github.com/710leo/urlooker/dataobj"
-	"github.com/710leo/urlooker/modules/alarm/judge"
+	"github.com/flytd/urlooker/dataobj"
+	"github.com/flytd/urlooker/modules/alarm/judge"
 )
 
 type Alarm int

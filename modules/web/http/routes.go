@@ -3,8 +3,8 @@ package http
 import (
 	"net/http"
 
-	"github.com/710leo/urlooker/modules/web/g"
-	"github.com/710leo/urlooker/modules/web/http/routes"
+	"github.com/flytd/urlooker/modules/web/g"
+	"github.com/flytd/urlooker/modules/web/http/routes"
 
 	"github.com/gorilla/mux"
 )

@@ -7,8 +7,8 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/710leo/urlooker/modules/web/http/errors"
-	"github.com/710leo/urlooker/modules/web/http/render"
+	"github.com/flytd/urlooker/modules/web/http/errors"
+	"github.com/flytd/urlooker/modules/web/http/render"
 )
 
 // Recovery is a Negroni middleware that recovers from any panics and writes a 500 if there was one.
